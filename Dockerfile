@@ -1,10 +1,10 @@
-FROM docker.io/python:3.10 as build
+FROM docker.io/python:3.13 as build
 WORKDIR /src
 RUN pip install poetry
 ADD . .
 RUN poetry build
 
-FROM docker.io/python:3.10-slim
+FROM docker.io/python:3.13-slim
 
 WORKDIR /app
 COPY --from=build /src/dist/*.whl .
